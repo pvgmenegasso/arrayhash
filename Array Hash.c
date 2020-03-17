@@ -26,7 +26,7 @@ int chartoint(char ch)
 }
 
 // converts a whole line to it's hash value, with the aid of some calls to the above function
-int convertstr(char ch[])
+int convertstr(char ch[], int linenr)
 {
 	//variable to store the value through the loop
 	int temp = 0 ;
@@ -37,7 +37,7 @@ int convertstr(char ch[])
 	while(ch[i] != '\0')
 	{
 		//increases the size of the temporary result by the hash value of each character on the string
-		temp += chartoint(ch[i]) + i ;
+		temp += chartoint(ch[i]) + i + linenr ;
 		i++ ;
 	}
 
@@ -82,7 +82,7 @@ int main(void) {
 		for(int j = 0 ; j<countlines ; j++)
 		{
 			fscanf(fptr, "%s", buff) ;
-			hash += convertstr(buff) + j ;
+			hash += convertstr(buff, j)  ;
 			printf("\n  conteudo linha: %s", buff) ;
 			printf("\n  valor hash: %d", hash) ;
 		}
